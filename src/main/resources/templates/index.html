@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:if>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href=" ">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+
+</head>
+<body>
+
+    <section class="header" >
+        <div class="container">
+            <div class="main-header">
+                <div class="carting">
+                    <ul>
+                        <li  sec:authorize="isAnonymous()"><a href="/login"> LOGIN</a></li>
+                        <li   sec:authorize="isAuthenticated()"  ><a href="/logout"> EXIT</a></li>
+                    </ul>
+                </div>
+                <div class="logo">
+                    <h3>
+                        <img src="img/11.png" class="home" style="max-width: 10em;">
+                    </h3>
+                </div>
+                <div class="box_1" >
+                    <h3>
+                        Cart: <span class="simpleCart_total"></span> (<span id=countOfGoods  >  </span> items)<img src="img/cart.png" alt=""/></h3>
+
+                </div>
+
+            </div>
+
+
+
+
+
+            <ul id="list" name="top">
+
+
+                <li>IPHONE</li>
+                <li>
+                    <ul class="push">
+                        <li  id="PHONE" class="phone" value="SE">IPHONE SE</li>
+                        <li id="PHONE" class="phone" value="6">IPHONE 6/6s/6s Plus</li>
+                        <li id="PHONE" class="phone" value="7">IPHONE 7/7 Plus</li>
+                        <li id="PHONE" class="phone" value="8">IPHONE 8/8 Plus</li>
+                        <li id="PHONE" class="phone" value="X">IPHONE X/X Pro</li>
+                        <li id="PHONE" class="phone" value="11">IPHONE 11/11 Pro</li>
+                    </ul>
+                </li>
+
+                <li>WATCH</li>
+
+                <li>
+                    <ul class="push">
+                        <li id="WATCH" class="phone" value="Series 1" >Series 1</li>
+                        <li id="WATCH" class="phone" value="Series 2" >Series 2</li>
+                        <li id="WATCH" class="phone" value="Series 3" >Series 3</li>
+                        <li id="WATCH" class="phone" value="Series 4" >Series 4</li>
+                        <li id="WATCH" class="phone" value="Series 5" >Series 5</li>
+                    </ul>
+                </li>
+                <li>HEADPHONE</li>
+                <li>
+                    <ul class="push">
+                        <li id="HEADPHONE" class="phone" value="Series 1">Series 1</li>
+                        <li id="HEADPHONE" class="phone"  value="Series 2" >Series 2</li>
+                        <li id="HEADPHONE" class="phone" value="Pro">Series Pro</li>
+
+                    </ul>
+                </li>
+                <li>LAPTOP</li>
+
+                <li>
+                    <ul class="push">
+                        <li id="LAPTOP" class="phone" value="Air">MacBook Air</li>
+                        <li id="LAPTOP" class="phone" value="Pro 13">MacBook Pro 13</li>
+                        <li id="LAPTOP" class="phone" value="Pro 16">MacBook Pro 16</li>
+                    </ul>
+                </li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')">ADMIN</li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')">
+                    <ul class="push">
+                        <li  > <a href="/add_goods">ADD GOODS </a></li>
+                    </ul>
+                </li>
+
+                <li sec:authorize="isAuthenticated()">ORDERS</li>
+                <li sec:authorize="isAuthenticated()">
+                    <ul class="push">
+                        <li class="or">YOUR ORDERS</li>
+                    </ul>
+                </li>
+
+
+            </ul>
+
+        </div>
+    </section>
+
+
+<div id="one">
+    <section id="slider">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block">
+                        <div class="slider-text-area">
+                            <div class="slider-text">
+                                <h2>iPhone 11 Pro Max -</h2>
+                                <p class="sub-slider-text">the best smartphone in the world. <br></p>
+                                <p class="slider-p">The revolutionary system of three cameras - much more features and <br> constant ease of use. Unprecedented increase in battery life. <br>And an amazing processor with advanced support for machine learning <br> technology, which  opens up great new perspectives for the iPhone. Introducing  <br>the iPhone 11 Pro. He is worthy of his name.</p>
+                                <button type="button"  id="PHONE" class="btn edit-button-1 phone" value="11 Pro Max">BUY NOW</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="service">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block-top">
+                        <div class="service-header">
+                            <h1>Apple AirPods Pro</h1>
+                            <p>New design and active noise canceling function for immersive sound.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block-bottom">
+                        <div class="service-tab">
+
+                            <ul class="badhon-tab" role="tablist">
+                                <li class="active"><a  aria-controls="" role="" data-toggle="">
+                                    <i class="fa fa-heart-o"></i>
+                                    <img class="first" src="img/Pro.png" >
+
+                                </a></li>
+                                <li><a  aria-controls="profile" role="tab" data-toggle="tab">
+                                    <i class="fa fa-briefcase"></i>
+                                    <img src="img/pro1.png" >
+                                </a></li>
+                                <li><a  aria-controls="messages" role="tab" data-toggle="tab">
+                                    <i class="fa fa-leaf"></i>
+                                    <img src="img/pro2.png" >
+
+
+                                </a></li>
+                                <li><a  aria-controls="settings" role="tab" data-toggle="tab">
+                                    <i class="fa fa-briefcase"></i>
+
+                                    <img src="img/pro3.png"  >
+                                </a></li>
+
+                            </ul>
+                            <div class="tab-content edit-tab-content">
+                                <div class="tab-pane active edit-tab" id="home">
+                                    <div class="teb-icon-edit">
+                                        <i class="fa fa-heart-o"></i>
+                                    </div>
+                                    <img src="img/Pro.png" class="img" >
+                                </div>
+
+                            </div>
+                            <button value="Pro"  id="AIRPODS" type="button" class="btn btn-default edit-button-2 phone" >BUY NOW</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contant-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="block-left">
+                        <div class="contant-1-text-area">
+                            <div class="contant-1-head">
+                                <h1>Apple Watch Series 5</h1>
+                            </div>
+                            <div class="contant-1-text">
+                                <h2>You have not seen such a watch.</h2>
+                                <p>Their display never sleeps. <br /> Their style can be changed to your taste. <br /> This watch does not take your eyes off your heart.<br /> This watch helps you achieve your fitness goals. </p>
+                                <button type="button" value="Series 5" id="WATCH" class="btn btn-default edit-button-2 phone" >BUY NOW</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="block-right">
+                        <div class="block-right-img">
+                            <img src="img/mobile-phon-1.png" alt="img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section>
+        <ul id="slides">
+            <li class="slide showing">
+                <img src="img/1.jpg" class="slide-img">
+            </li>
+            <li class="slide ">
+                <img src="img/2.jpg" class="slide-img">
+            </li>
+            <li class="slide">
+                <img src="img/3.jpg" class="slide-img">
+            </li>
+            <li class="slide">
+                <img src="img/4.jpg" class="slide-img">
+            </li>
+            <li class="slide">
+                <img src="img/5.png" class="slide-img">
+            </li>
+            <li class="slide">
+                <img src="img/6.jpg" class="slide-img">
+            </li>
+            <li class="slide">
+                <img src="img/7.jpg" class="slide-img">
+            </li>
+            <li class="slide">
+                <img src="img/8.jpg" class="slide-img">
+            </li>
+
+        </ul>
+
+    </section>
+
+
+
+
+    <section id="submit-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block">
+                        <div class="submit-contant">
+                            <div class="submit-header">
+                                <i class="fa fa-envelope-o"></i>
+                                <h3>You can find other goods</h3>
+                            </div>
+                            <div class="submit-area">
+                                <div class="submit-bottom">
+
+
+                                    <a href="#top"> <button id="goods" type="submit" value="Find">FIND</button></a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+    <section id="order" class="koronovirys">
+
+        <div class="wor">
+            <h2>
+                Do not worry, you can turn the product over 14 days,<br>
+                so don't be afraid and buy,<br>
+                we check products before sale.
+            </h2>
+
+        </div>
+
+
+        <div  class="container text-center">
+
+            <div class="col-md-5 col-sm-12 shop">
+
+                <img class="bigcart" src="img/sprite.png" alt="" >
+                <span sec:authorize="isAuthenticated()" class="form2"   method="post" name="form2" >
+<!--<div sec:authorize="isAuthenticated()">-->
+
+                    HELLO<span id="user_name"></span>Input,please,some information about you to order products!
+
+                    <label for="Adress" >Адресса</label>
+                    <input class="" type="text" id="Adress" name="Adress" placeholder="" required>
+                    <label for="Number">Номер телефона</label>
+                    <input class="" type="tel"
+                           pattern="2[0-9]{3}-[0-9]{3}" id="Number" name="Number" placeholder="2xxx-xxx"   required>
+                    <input class="" type="text"
+                            id="God" name="God"  value="someName"  hidden>
+                    <input class="" type="text"
+                           id="Godname" name="Godname"  value="" hidden>
+                    <input class="" type="text"
+                           id="Mode" name="Mode"  value="" hidden>
+                    <input class="" type="text"
+                           id="Memory" name="Memory"  value="" hidden>
+                    <div class="">
+                        <button   class="btn Zam" >Замовити</button>
+
+                    </div>
+
+            <!--</div>-->
+                </span>
+                <a href="/sign_in"><button class="btn goToReg" sec:authorize="isAnonymous()" >Увійти для замовлення товарів</button></a>
+                <button class="btn go" >На попередню сторінку </button>
+            </div>
+
+            <div class="col-md-7 col-sm-12 text-left">
+                <ul>
+                    <li class="row list-inline columnCaptions">
+                        <span>кількість</span>
+                        <span>назва</span>
+                        <span>Price</span>
+                    </li>
+
+                </ul>
+                <ul class="goods" id="basketGoods">
+
+
+                </ul>
+                <ul>
+          <li class="row totals">
+                        <span class="itemName">Total:</span>
+                        <span class="totalPrice"></span>
+                        <span class="order">Please check all products</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+
+    <section class="orde">
+
+
+        <div  class="container text-center">
+
+            <div class="col-md-5 col-sm-12 shop">
+
+                Дякуюмо за покупки
+            </div>
+
+            <div class="col-md-7 col-sm-12 text-left">
+                <ul class="goo" id="basketGoods">
+                    <li class="row list-inline columnCaptions">
+                        <span>номер замовлення</span>
+                        <span>дата</span>
+                        <span>Ціна</span>
+                    </li>
+
+
+
+
+
+
+                </ul>
+
+
+
+
+
+
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+    <div id="two">
+
+        <section id="service">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block-top">
+                            <div class="service-header">
+                                <h1 id="name-model">...</h1>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block-bottom">
+                            <div class="service-tab">
+
+                                <ul class="badhon-tab" role="tablist">
+                                    <li class="active"><a  aria-controls="" role="" data-toggle="">
+                                        <i class="fa fa-heart-o"></i>
+                                        <img src="" style="height: 50px;" id="goods_img">
+
+                                    </a></li>
+                                    <li><a  aria-controls="profile" role="tab" data-toggle="tab">
+                                        <i class="fa fa-briefcase"></i>
+                                        <img src="" style="height: 50px;" id="goods_img">
+                                    </a></li>
+                                    <li><a  aria-controls="messages" role="tab" data-toggle="tab">
+                                        <i class="fa fa-leaf"></i>
+                                        <img src="" style="height: 50px;" id="goods_img">
+
+
+                                    </a></li>
+                                    <li><a  aria-controls="settings" role="tab" data-toggle="tab">
+                                        <i class="fa fa-briefcase"></i>
+
+                                        <img src=""  style="height: 50px;" id="goods_img">
+                                    </a></li>
+
+
+
+
+                                </ul>
+
+
+                                <div class="tab-content edit-tab-content">
+                                    <div class="tab-pane active edit-tab" id="home">
+                                        <div class="img_act">
+                                            <img src=" lox" class="img bgc-img" id="photo"   alt="">
+                                            <p id="price">...</p>
+                                            <div class="lox">
+                                                <button type="button"  id="32" class="btn btn-default edit-button-2"><span>BUY NOW</span> </button>
+
+                                                <button type="button" id="add" class="btn btn-default edit-button-2"><span>ADD</span> </button>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+
+
+                                            <p id="model" >...</p>
+                                            <p id="shortDescription" >...</p>
+                                            <p id="fullDescription">...</p>
+                                        </div>
+
+
+
+
+
+
+
+
+                                    </div>
+                                </div>
+                                <div class="models">
+
+                                </div>
+                                <div class="memory">
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+
+    <section id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block">
+                        <div class="footer-contant">
+                            <h3>WE ARE HERE</h3>
+                            <div class="social-icon">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-tumblr"></i></a>
+                                <a href="#"><i class="fa fa-google"></i></a>
+
+                            </div>
+                            <div class="support-link">
+                                <ul>
+                                    <li><a href="#">TELEGRAM</a></li>
+                                    <li><a href="#">TWITTER</a></li>
+                                    <li><a href="#">INSTAGRAM</a></li>
+                                    <li><a href="#">VK</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+<script src="js/main_page.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="./js/index.js"></script>
+
+</body>
+
+
+
+</html>

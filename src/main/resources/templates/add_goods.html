@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>add goods</title>
+      <link rel="stylesheet" href="./css/add_goods.css">
+      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+       
+
+        <script src="./js/add_goods.js"></script>
+  
+</head>
+
+<body>
+
+
+<form  method="post"  action="/save_goods" id="feedback-form">
+<label for="Name">Name:</label>
+<input type="text" name="name" id="Name" required class="w100 border">
+
+<label for="Category">Category(Choose from these one : PHONE,LAPTOP,WATCH):</label>
+<input type="text" name="category" id="Category"  required class="w100 border">
+
+<label for="Model">Model:</label>
+<input type="text" name="model" id="Model" required  class="w100 border">
+
+    <label for="Memory">Memory:</label>
+    <input type="number" name="memory" id="Memory"  class="w100 border">
+
+
+<label for="Price">Price:</label>
+<input type="number" name="price" id="Price" required class="w100 border">
+
+<label for="Count">Count:</label>
+<input type="number" name="count" id="Count" required class="w100 border">
+
+<label for="URL">URLs photo type via ',':</label>
+<input type="text" name="url" id="URL"  class="w100 border">
+
+
+<label for="ShortDescription">Short description:</label>
+<input type="text" name="shortDescription" id="ShortDescription"  class="w100 border">
+
+<label for="FullDescription">Description:</label>
+<textarea     name="fullDescription"    id="FullDescription"  rows="5" placeholder="" class="w100 border"></textarea>
+<br>
+    <div
+            style="color:greenyellow;margin:10px 0px;">
+        <span th:text="${message}"></span>
+
+    </div>
+
+<button  id="submitFF"   >Save Goods</button>
+    <a href="/" id="mainFF">Show main page</a>
+</form>
+
+
+</body>
+</html>
