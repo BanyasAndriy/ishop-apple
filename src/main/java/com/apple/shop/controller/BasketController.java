@@ -2,19 +2,14 @@ package com.apple.shop.controller;
 
 
 import com.apple.shop.dto.BasketGoodsDto;
-import com.apple.shop.dto.GoodsDTO;
-import com.apple.shop.dto.UserDto;
+
 import com.apple.shop.entity.*;
 import com.apple.shop.service.*;
-import com.sun.mail.iap.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import sun.security.provider.certpath.OCSPResponse;
 
 import java.util.*;
 @RestController

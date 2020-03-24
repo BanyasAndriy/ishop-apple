@@ -1,30 +1,16 @@
 package com.apple.shop.controller;
 
-
-import com.apple.shop.dto.GoodsDTO;
 import com.apple.shop.entity.CustomUser;
-import com.apple.shop.entity.Goods;
 import com.apple.shop.entity.Role;
 import com.apple.shop.service.*;
-import com.sun.deploy.net.HttpRequest;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.UUID;
 
 @Controller
