@@ -11,7 +11,7 @@
     <groupId>com.apple.shop</groupId>
     <artifactId>apple_shop</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+
     <name>apple_shop</name>
     <description>Demo project for Spring Boot</description>
 
