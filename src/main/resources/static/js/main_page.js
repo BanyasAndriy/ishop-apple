@@ -40,7 +40,7 @@ $(function() {
 
 
 
-        count = sel.length;
+       /* count = sel.length;*/
         var res = 0;
 
         for(i=0; i < count; i++){
