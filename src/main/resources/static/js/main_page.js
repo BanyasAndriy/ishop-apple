@@ -8,8 +8,10 @@ $(function() {
         slides[currentSlide].className = 'slide';
         currentSlide = (currentSlide+1)%slides.length;
         slides[currentSlide].className = 'slide showing';
+
     }
 });
+
 
 $(function() {
     $('.badhon-tab li img').click(function(){
@@ -33,6 +35,29 @@ $(function() {
         $("#list > li").children("ul").slideDown();
     });
 
+    sel =  localStorage.getItem("basketGoods");
+
+
+
+
+        count = sel.length;
+        var res = 0;
+
+        for(i=0; i < count; i++){
+
+            if(sel.charAt(i) == "-"){
+                res++;
+            }
+
+        }
+
+    $('#countOfGoods').html(res);
+
+
+
+
+
+
 });
 
 
@@ -41,6 +66,7 @@ $(document).ready(function () {
         var name = $(this).attr("id");
         var value = $(this).attr("value");
         getGoodsByModel(value, name);
+
     });
 });
 
@@ -214,6 +240,7 @@ $(function() {
         Minus();
         Delete();
         howMuch();
+        countOfItem();
 
         var basketGoods = document.getElementById("basketGoods").innerHTML;
 
@@ -239,14 +266,8 @@ $(function() {
         $('#one').css("display", "none");
         $('#two').css("display", "none");
 
-       
-
-        $('.orde').css("display", "block");
-
         $('.models,.memory').html('');
-        $("link[href*='css/main1.css']").remove();
 
-        $('head').append('<link rel="stylesheet" href="css/order.css" type="text/css" />');
 
 
         $("#list > li").children("ul").slideUp();
@@ -330,6 +351,7 @@ alert("order was created")
                 $('#Godname').val("");
                 $('#Mode').val("");
                 $('#Memory').val("");
+                countOfItem();
 
                 localStorage.setItem("basketGoods",'');
             },
@@ -339,6 +361,7 @@ alert("order was created")
                 $('#Godname').val("");
                 $('#Mode').val("");
                 $('#Memory').val("");
+                countOfItem();
 
 
 
@@ -408,6 +431,7 @@ $(function() {
             Delete();
             howMuch();
 
+
         });
 
       let select=" ";
@@ -434,6 +458,7 @@ $(function() {
     Minus();
     Delete();
     howMuch();
+    countOfItem();
     })
 
 });
@@ -455,6 +480,7 @@ $(function() {
 
 
         Back();
+
 
 
 
@@ -486,6 +512,7 @@ $(function() {
         $('.goBack').remove();
 
 
+
     });
 });
 
@@ -493,14 +520,17 @@ $(function() {
 
 $(function() {
 
-    $('.or ').click(function(){
+    $('.or , .Zam ').click(function(){
 
         $('#one').css("display", "none");
         $('#two').css("display", "none");
+        $('.koronovirys').css("display", "none");
         $('.orde').css("display", "block");
 
         $('.models,.memory').html('');
         $("link[href*='css/main1.css']").remove();
+
+        $("link[href*='css/custom.css']").remove();
 
         $('head').append('<link rel="stylesheet" href="css/order.css" type="text/css" />');
 
@@ -524,6 +554,7 @@ $(function() {
                 $('#Godname').val("");
                 $('#Mode').val("");
                 $('#Memory').val("");
+                countOfItem();
 
                 let select=" ";
 
@@ -541,6 +572,7 @@ $(function() {
                         '</li>';
                     $('.goo').html(select);
                     console.log(response[i].date);
+
                 }
 
             },
@@ -659,6 +691,7 @@ $(function() {
                   $('#Godname').val("");
                   $('#Mode').val("");
                   $('#Memory').val("");
+                  countOfItem();
 
                   let select=" ";
 
@@ -672,6 +705,7 @@ $(function() {
                           '<span class="price">' + response[i].price + '$</span>\n' +
                           '</li>';
                       $('.goods').html(select);
+                      countOfItem();
 
                   }
 
@@ -738,6 +772,7 @@ $(function() {
 
                           '</li>';
                       $('.goods').html(select);
+                      countOfItem();
                   }
                   Plus(countProducts);
                   Minus();
@@ -809,6 +844,7 @@ $(function() {
             $("link[href*='css/custom.css']").remove();
 
             $("#list > li").children("ul").slideUp();
+            countOfItem();
 
             Back();
 
@@ -841,6 +877,7 @@ $(function() {
         Minus();
         Delete();
         howMuch();
+        countOfItem();
 
 
 
@@ -862,13 +899,14 @@ $(function() {
 
     $('#add').click(function(){
 
-
-
+     var c=   $('#countOfGoods').text();
+        $('#countOfGoods').html(+c+1);
 
         $('#God').val("");
         $('#Godname').val("");
         $('#Mode').val("");
         $('#Memory').val("");
+
 
 
 
@@ -884,7 +922,7 @@ $(function() {
 
 
     //    $('.goods').html(select);
-        countOfItem();
+
 
         var result = select;
 
@@ -938,7 +976,7 @@ $(function() {
                     url: 'current_user_name',
 
                     success :function(response){
-                        countOfItem()
+
                         $('#God').val("");
                         $('#Godname').val("");
                         $('#Mode').val("");
@@ -958,16 +996,19 @@ $(function() {
                 });
 
 
+
             } else {
                 sel =  localStorage.getItem("basketGoods");
+                console.log(sel);
                 localStorage.setItem("basketGoods",select+sel);
-                countOfItem()
+
                 $('#God').val("");
                 $('#Godname').val("");
                 $('#Mode').val("");
                 $('#Memory').val("");
 
                $('.goods').html(select);
+
             }
         });
 
@@ -981,9 +1022,9 @@ $(function() {
 
 
 
-
-
     })
+
+
 
 });
 
@@ -1055,7 +1096,7 @@ function  howMuch() {
     list = document.querySelectorAll(".price");
     console.log(list);
 
-    for ( let i=0; i< list.length/2; i++) {
+    for ( let i=0; i< list.length; i++) {
         console.log(list[i].textContent.substring(0, list[i].textContent.length-1))
         price=price+Number(list[i].textContent.substring(0, list[i].textContent.length - 1));
 
@@ -1123,6 +1164,7 @@ console.log("model = " + modelOfGoods);
 
         };
         howMuch();
+        countOfItem();
         jQuery.post("is-user-auth",function(response) {
             if(response === 'yes') {
 
@@ -1139,7 +1181,7 @@ console.log("model = " + modelOfGoods);
 
                         console.log("Everything is cool")
                         localStorage.setItem("basketGoods",'');
-                        countOfItem()
+
 
                     },
                     error:function(response,textStatus) {
@@ -1156,7 +1198,7 @@ console.log("model = " + modelOfGoods);
             } else {
 
                 localStorage.setItem("basketGoods", select);
-                countOfItem()
+
             }
         });
 
