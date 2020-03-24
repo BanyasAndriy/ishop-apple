@@ -1,1 +1,1 @@
-web: java -jar $JAVA_OPTS -D server.port=$PORT target/apple_shop.jar
+web: java -jar $JAVA_OPTS -Dserver.port=$PORT target/apple_shop.jar com/apple/shop/AppleShopApplication.java
