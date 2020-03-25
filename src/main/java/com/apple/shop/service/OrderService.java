@@ -17,6 +17,10 @@ public class OrderService {
     @Autowired
     OrderRepository orderRepository;
 
+
+    @Autowired
+    MailSender mailSender;
+
 @Autowired
     GoodsInOrderRepository goodsInOrderRepository;
 
@@ -37,6 +41,29 @@ public class OrderService {
         return true;
 
     }
+
+
+@Transactional
+    public void sendOrderToEmail(CustomUser customUser , List<GoodsInOrder> goodsInOrders  ){
+
+String setGoods=" ";
+    for (GoodsInOrder goods:goodsInOrders
+         ) {
+      setGoods=setGoods+""+goods.getGoods().getName()+" "+goods.getGoods().getModel()+" " +goods.getMemory() +"~~Count: "+goods.getCount()+"\n";
+
+    }
+
+
+        String message="New order!\n Customer : "+customUser.getFirstName()+" "+customUser.getName()+" "+customUser.getSurName()
+                +"\n Address : " +customUser.getAddress() +"\n Phone : "+customUser.getPhone() +
+                "\n Products : + \n" + setGoods;
+
+
+        mailSender.sendCreatedOrder(message);
+    }
+
+
+
 
     @Transactional
     public List<Order> getOrdersByUser(CustomUser customUser){

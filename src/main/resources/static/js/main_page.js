@@ -147,9 +147,11 @@ function getGoodsByModel(name, value ) {
             for (var key in response.memoryAndPrice) {
                 if (response.memoryAndPrice.hasOwnProperty(key)) {
 
-                    $('#price').html(response.memoryAndPrice[key]+'$');
-                    $('#name-model').html('<span class="names" >' + response.name + '</span ><span class="mode" >'+ response.model + '</span > <span class="gg" >'+key + '</span >GB');
-                }}
+                    $('#price').html(response.memoryAndPrice[key] + '$');
+                    $('#name-model').html('<span class="names" >' + response.name + '</span ><span class="mode" >' + response.model + '</span > <span class="gg" >' + key + '</span >GB');
+
+                }
+            }
 
 
             let select="";

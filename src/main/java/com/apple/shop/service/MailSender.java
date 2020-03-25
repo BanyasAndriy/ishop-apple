@@ -25,7 +25,19 @@ public class MailSender {
 
         mailSender.send(mailMessage);
 
+    }
 
+
+    public void sendCreatedOrder(String message) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+
+        mailMessage.setFrom(username);
+        mailMessage.setTo(username);
+        mailMessage.setSubject("New Order");
+        mailMessage.setText(message);
+
+        mailSender.send(mailMessage);
 
     }
+
 }

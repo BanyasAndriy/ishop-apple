@@ -95,13 +95,6 @@ goodsInBasket.addAll(newGoodsInBasket);
 
         }
 
-
-
-
-
-
-
-
         return goodsInBasket;
 
     }

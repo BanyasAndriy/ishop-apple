@@ -68,8 +68,6 @@ List<GoodsInOrder> goodsInOrders = orderService.getGoodsInOrders(customUser);
     @RequestMapping("/create-order")
     public List<GoodsInOrder> createOrder(@RequestBody OrderDto orderDto){
 
-
-
          Order order = new Order();
          CustomUser currentUser = userService.findByEmail(getEmailCurrentUser());
 
@@ -129,14 +127,14 @@ for (int i = 0 ;i<allModels.length;i++) {
          currentUser.setPhone(orderDto.getPhone());
          currentUser.setAddress(orderDto.getAddress());
 
+
+         orderService.sendOrderToEmail(currentUser,goodsInOrders);
+
         Basket basket = currentUser.getBasket();
         List<GoodsInBasket> goodsInBasket=basket.getGoods();
 
-
-
-
-
          List<GoodsInOrder> allGoodsInOrders = orderService.getGoodsInOrders(currentUser);
+
 
 
 
