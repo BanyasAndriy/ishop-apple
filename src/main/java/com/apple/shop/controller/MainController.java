@@ -37,6 +37,24 @@ public class MainController {
     }
 */
 
+
+
+    @RequestMapping("/")
+    ModelAndView getBasketInfo(){
+
+        ModelAndView res = new ModelAndView("index");
+
+
+
+
+
+
+        return res;
+
+    }
+
+
+
     @RequestMapping("/sign_in")
     String showSign_inPage() {
         return "sign_in";

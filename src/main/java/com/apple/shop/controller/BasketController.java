@@ -31,17 +31,7 @@ public class BasketController {
     @Autowired
     GoodsInBasketService goodsInBasketService;
 
-    @RequestMapping("/")
-  ModelAndView getBasketInfo(){
 
-      ModelAndView res = new ModelAndView("index");
-
-
-     res.addObject("basket",basketService.countOfGoodsInBasket(getEmailCurrentUser()));
-
-     return res;
-
-  }
     @RequestMapping("/basket")
     ModelAndView showBasket(){
 
@@ -108,6 +98,24 @@ basketService.deleteGoodsFromBasket(model,name,memory,customUser);
         return "Ok";
 
     }
+
+
+
+    @RequestMapping(value="/get-count-goods" , method = RequestMethod.POST)
+    public String getCountOfGoods(){
+
+
+        CustomUser customUser = userService.findByEmail(getEmailCurrentUser());
+        Basket basket = customUser.getBasket();
+
+
+        return String.valueOf(basket.getGoods().size());
+
+    }
+
+
+
+
 
 
     private String  getEmailCurrentUser() {

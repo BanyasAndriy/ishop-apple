@@ -35,23 +35,80 @@ $(function() {
         $("#list > li").children("ul").slideDown();
     });
 
-    sel =  localStorage.getItem("basketGoods");
+
+    if (localStorage.getItem("basketGoods")===null){
+        localStorage.setItem("basketGoods",'');
+    }
 
 
 
+    jQuery.post("is-user-auth",function(response) {
+        if(response === 'yes') {
 
-        let count = sel.length;
-        var res = 0;
 
-        for(i=0; i < count; i++){
+            $.ajax({
+                type: "POST",
+                contentType : 'application/json; charset=utf-8',
+                dataType : "text",
+                url: '/get-count-goods',
 
-            if(sel.charAt(i) == "-"){
-                res++;
+                success :function(response){
+
+                  if (localStorage.getItem(basketGoods)!==''){
+                      sel =  localStorage.getItem("basketGoods");
+
+                      let count = sel.length;
+                      var res = 0;
+
+                      for(i=0; i < count; i++){
+
+                          if(sel.charAt(i) == "-"){
+                              res++;
+                          }
+
+                      }
+
+                      let result = +response+res;
+
+
+                      $('#countOfGoods').html(result);
+
+                  }else {
+                      $('#countOfGoods').html(response);
+                  }
+
+                },
+                error:function(response,textStatus) {
+
+
+                }
+            });
+
+
+
+        } else {
+
+            sel =  localStorage.getItem("basketGoods");
+
+            let count = sel.length;
+            var res = 0;
+
+            for(i=0; i < count; i++){
+
+                if(sel.charAt(i) == "-"){
+                    res++;
+                }
+
             }
 
-        }
+            $('#countOfGoods').html(res);
 
-    $('#countOfGoods').html(res);
+        }
+    });
+
+
+
+
 
 
 
@@ -147,7 +204,7 @@ function getGoodsByModel(name, value ) {
 
         },
         error:function(response) {
-            alert("smt wrong "+ response);
+
 
         }
     });
@@ -196,7 +253,7 @@ function getPriceByMemory(memory,model) {
 
         },
         error:function(response) {
-            alert("smt wrong "+ response);
+
 
         }
     });
@@ -321,7 +378,9 @@ $(function() {
 
 
 
-
+/*
+if ($('#Mode').val()!=="" && $('#Memory').val()!=="" &&  $('#Godname').val()!==""   && $('#God').val()!==""  &&  $('#Adress').val()!==""  && $('#Number').val()!=="")Х
+*/
 
         var goods={
             model: $('#Mode').val(), //ось тут повставляй з інпутів
@@ -346,7 +405,6 @@ $(function() {
             success :function(response){
 
 
-alert("order was created")
                 $('#God').val("");
                 $('#Godname').val("");
                 $('#Mode').val("");
@@ -549,7 +607,6 @@ $(function() {
             success :function(response){
 
 
-                alert("I am in /order")
                 $('#God').val("");
                 $('#Godname').val("");
                 $('#Mode').val("");
@@ -577,7 +634,7 @@ $(function() {
 
             },
             error:function(response,textStatus) {
-                alert(" i  am in fail /order");
+
                 $('#God').val("");
                 $('#Godname').val("");
                 $('#Mode').val("");
@@ -605,7 +662,7 @@ $(function() {
 
 $(function() {
 
-    $('.box_1').click(function(){
+    $('.box_1').click(function (key){
 
 
 
@@ -620,6 +677,13 @@ $(function() {
 
             $(".go").addClass('kto');
             $(".go").removeClass('homess');
+
+
+            if (localStorage.getItem("basketGoods")==null){
+             localStorage.setItem("basketGoods",'');
+
+            }
+
             sel =  localStorage.getItem("basketGoods");//получаємо дані з корзини
             $('.goods').html(sel);//виводжу з локал стореджа на сторінку
 
@@ -1054,7 +1118,7 @@ $(function() {
             localStorage.setItem("basketGoods",'');
         }
 
-        sel =  localStorage.getItem("basketGoods");
+      /*  sel =  localStorage.getItem("basketGoods");
 
 
         count = sel.length;
@@ -1069,6 +1133,57 @@ $(function() {
         }
 
         $('#countOfGoods').html(res);
+*/
+
+
+
+        jQuery.post("is-user-auth",function(response) {
+            if(response === 'yes') {
+
+
+                $.ajax({
+                    type: "POST",
+                    contentType : 'application/json; charset=utf-8',
+                    dataType : "text",
+                    url: '/get-count-goods',
+
+                    success :function(response){
+
+
+                        $('#countOfGoods').html(response);
+
+
+                    },
+                    error:function(response,textStatus) {
+
+
+                    }
+                });
+
+
+
+            } else {
+
+                sel =  localStorage.getItem("basketGoods");
+
+                let count = sel.length;
+                var res = 0;
+
+                for(i=0; i < count; i++){
+
+                    if(sel.charAt(i) == "-"){
+                        res++;
+                    }
+
+                }
+
+                $('#countOfGoods').html(res);
+
+            }
+        });
+
+
+
 
     });
 });
