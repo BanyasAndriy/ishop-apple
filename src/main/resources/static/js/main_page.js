@@ -1050,6 +1050,26 @@ $(function() {
         $("#list > li").children("ul").slideUp();
 
 
+        if(localStorage.getItem("basketGoods")===null){
+            localStorage.setItem("basketGoods",'');
+        }
+
+        sel =  localStorage.getItem("basketGoods");
+
+
+        count = sel.length;
+        var res = 0;
+
+        for(i=0; i < count; i++){
+
+            if(sel.charAt(i) == "-"){
+                res++;
+            }
+
+        }
+
+        $('#countOfGoods').html(res);
+
     });
 });
 
