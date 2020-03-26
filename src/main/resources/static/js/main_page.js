@@ -40,7 +40,10 @@ $(function() {
         localStorage.setItem("basketGoods",'');
     }
 
-
+    $('#God').val("");
+    $('#Godname').val("");
+    $('#Mode').val("");
+    $('#Memory').val("");
 
     jQuery.post("is-user-auth",function(response) {
         if(response === 'yes') {
@@ -128,6 +131,7 @@ $(document).ready(function () {
 });
 
 function getGoodsByModel(name, value ) {
+    let select="";
     $.ajax({
         type: "POST",
         contentType : 'application/json; charset=utf-8',
@@ -137,6 +141,10 @@ function getGoodsByModel(name, value ) {
 
         success :function(response){
 
+
+
+            $('.models').html("");
+            $('.memory').html("");
             let models = response.allModels;//список моделей
             let memories = response.allMemories;
             let Photo = response.urlPhoto.replace(/["]/g, '').split(',');
@@ -154,7 +162,7 @@ function getGoodsByModel(name, value ) {
             }
 
 
-            let select="";
+             select="";
 
             $('#shortDescription').html('***');
 
@@ -322,22 +330,21 @@ $(function() {
 
     $('.Zam ').click(function(){
 
-        $('#one').css("display", "none");
-        $('#two').css("display", "none");
+
 
         $('.models,.memory').html('');
-
-
-
-        $("#list > li").children("ul").slideUp();
-        $('.goBack').remove();
-
 
         $('#God').val("");
         $('#Godname').val("");
         $('#Mode').val("");
         $('#Memory').val("");
 
+        $("#list > li").children("ul").slideUp();
+        $('.goBack').remove();
+
+
+
+        $('#countOfGoods').html(0);
 
 
         let name="";
@@ -380,9 +387,7 @@ $(function() {
 
 
 
-/*
-if ($('#Mode').val()!=="" && $('#Memory').val()!=="" &&  $('#Godname').val()!==""   && $('#God').val()!==""  &&  $('#Adress').val()!==""  && $('#Number').val()!=="")Х
-*/
+
 
         var goods={
             model: $('#Mode').val(), //ось тут повставляй з інпутів
@@ -428,6 +433,10 @@ if ($('#Mode').val()!=="" && $('#Memory').val()!=="" &&  $('#Godname').val()!=="
 
             }
         });
+
+
+
+        countOfItem();
 
 
 
@@ -585,6 +594,7 @@ $(function() {
         $('#one').css("display", "none");
         $('#two').css("display", "none");
         $('.koronovirys').css("display", "none");
+        $('.header').css("display", "block");
         $('.orde').css("display", "block");
 
         $('.models,.memory').html('');
@@ -598,6 +608,11 @@ $(function() {
         $("#list > li").children("ul").slideUp();
         $('.goBack').remove();
 
+
+        $('#God').val("");
+        $('#Godname').val("");
+        $('#Mode').val("");
+        $('#Memory').val("");
 
         $.ajax({
             type: "POST",
@@ -624,8 +639,8 @@ $(function() {
 
                     select += '' +
                         '<li class="row all">\n' +
-                        '</span><span class="quantity much">'+response[i].count+ '</span>\n' +
-                        '<span class="itemName">' +'<span class="names" >' + response[i].goods.name + '</span ><span class="mode" >'+ response[i].goods.model + '</span > <span class="gg" >'+response[i].memory + '</span >GB'+ '</span>\n' +
+                        '</span><span class="quantity ">'+response[i].count+ '</span>\n' +
+                        '<span class="itemName">' +'<span  >' + response[i].goods.name + '</span ><span  >'+ response[i].goods.model + '</span > <span  >'+response[i].memory + '</span >GB'+ '</span>\n' +
                         '<span style="float: right;">'+ response[i].date+'</span>\n' +
                         '<span class="cent">' + response[i].price + '$</span>\n' +
                         '</li>';
@@ -680,7 +695,8 @@ $(function() {
             $(".go").addClass('kto');
             $(".go").removeClass('homess');
 
-
+            $('.orde').css("display", "none");
+            $("link[href*='css/order.css']").remove();
             if (localStorage.getItem("basketGoods")==null){
              localStorage.setItem("basketGoods",'');
 
@@ -727,6 +743,8 @@ $(function() {
         } else{
             $(".go").addClass('homess');
             $(".go").removeClass('kto');
+            $('.orde').css("display", "none");
+            $("link[href*='css/order.css']").remove();
             sel =  localStorage.getItem("basketGoods");//получаємо дані з корзини
             $('.goods').html(sel);//виводжу з локал стореджа на сторінку
             console.log('f,kz');
@@ -965,13 +983,16 @@ $(function() {
 
     $('#add').click(function(){
 
-     var c=   $('#countOfGoods').text();
-        $('#countOfGoods').html(+c+1);
+
 
         $('#God').val("");
         $('#Godname').val("");
         $('#Mode').val("");
         $('#Memory').val("");
+     var c=   $('#countOfGoods').text();
+        $('#countOfGoods').html(+c+1);
+
+
 
 
 
@@ -1120,23 +1141,10 @@ $(function() {
             localStorage.setItem("basketGoods",'');
         }
 
-      /*  sel =  localStorage.getItem("basketGoods");
-
-
-        count = sel.length;
-        var res = 0;
-
-        for(i=0; i < count; i++){
-
-            if(sel.charAt(i) == "-"){
-                res++;
-            }
-
-        }
-
-        $('#countOfGoods').html(res);
-*/
-
+        $('#God').val("");
+        $('#Godname').val("");
+        $('#Mode').val("");
+        $('#Memory').val("");
 
 
         jQuery.post("is-user-auth",function(response) {

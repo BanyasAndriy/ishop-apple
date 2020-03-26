@@ -12,6 +12,8 @@ body{
 }
 .shop{
   margin-top: 5em;
+  font-size: 3em;
+  font-weight: 700;
 }
 .form2{
   display: grid;
@@ -89,16 +91,16 @@ a:hover {
 }
 
 .columnCaptions span:first-child{
-  padding-left:35px;
+  padding-right: 90px;
 }
 
 .columnCaptions span{
-  padding: 0 60px 0 0;
+  padding: 0 120px 0 0;
 }
 
 .columnCaptions span:last-child{
   float: right;
-  padding-right: 72px;
+  padding-right: 40px;
 }
 
 .itemName{  
@@ -137,6 +139,7 @@ a:hover {
   font-size :18px;
   font-weight: bold;
   float: right;
+  margin-right: 8em;
 }
 
 

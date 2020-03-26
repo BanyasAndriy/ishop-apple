@@ -96,7 +96,7 @@ List<GoodsInOrder> goodsInOrders = new ArrayList<>();
 
             goodsInOrders.addAll(order.getGoodsInOrder());
         }
-
+Collections.reverse(goodsInOrders);
 return goodsInOrders;
 
     }

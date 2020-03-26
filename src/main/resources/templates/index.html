@@ -300,11 +300,11 @@
 
                     HELLO<span id="user_name"></span>Input,please,some information about you to order products!
 
-                    <label for="Adress" >Адресса</label>
+                    <label for="Adress" >Your address:</label>
                     <input class="" type="text" id="Adress" name="Adress" placeholder="" required>
-                    <label for="Number">Номер телефона</label>
+                    <label for="Number">Your phone</label>
                     <input class="" type="tel"
-                           pattern="2[0-9]{3}-[0-9]{3}" id="Number" name="Number" placeholder="2xxx-xxx"   required>
+                           pattern="" id="Number" name="Number" placeholder=""   required>
                     <input class="" type="text"
                             id="God" name="God"  value="someName"  hidden>
                     <input class="" type="text"
@@ -314,21 +314,21 @@
                     <input class="" type="text"
                            id="Memory" name="Memory"  value="" hidden>
                     <div class="">
-                        <button   class="btn Zam" >Замовити</button>
+                        <button   class="btn Zam" >Create order</button>
 
                     </div>
 
             <!--</div>-->
                 </span>
-                <a href="/sign_in"><button class="btn goToReg" sec:authorize="isAnonymous()" >Увійти для замовлення товарів</button></a>
-                <button class="btn go" >На попередню сторінку </button>
+                <a href="/sign_in"><button class="btn goToReg" sec:authorize="isAnonymous()" >Sign in to order products</button></a>
+                <button class="btn go" >To the previous page</button>
             </div>
 
             <div class="col-md-7 col-sm-12 text-left">
                 <ul>
                     <li class="row list-inline columnCaptions">
-                        <span>кількість</span>
-                        <span>назва</span>
+                        <span>Quantity</span>
+                        <span>Name</span>
                         <span>Price</span>
                     </li>
 
@@ -360,15 +360,24 @@
 
             <div class="col-md-5 col-sm-12 shop">
 
-                Дякуюмо за покупки
+                Thank you for your orders!
             </div>
 
             <div class="col-md-7 col-sm-12 text-left">
+                <ul>
+                    <li class="row list-inline columnCaptions">
+                        <span class="cil">Quantity</span>
+                        <span>Name</span>
+                        <span>Price</span>
+                        <span>Date</span>
+                    </li>
+
+                </ul>
                 <ul class="goo" id="basketGoods">
                     <li class="row list-inline columnCaptions">
-                        <span>номер замовлення</span>
-                        <span>дата</span>
-                        <span>Ціна</span>
+                        <span>The order number</span>
+                        <span>Date</span>
+                        <span>Price</span>
                     </li>
 
 
@@ -502,7 +511,7 @@
                                 <ul>
                                     <li><a href="#">TELEGRAM</a></li>
                                     <li><a href="#">TWITTER</a></li>
-                                    <li><a href="#">INSTAGRAM</a></li>
+                                    <li><a href="https://www.instagram.com/andriy_banyas/?hl=ru">INSTAGRAM</a></li>
                                     <li><a href="#">VK</a></li>
 
                                 </ul>

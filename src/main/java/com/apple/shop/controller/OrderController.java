@@ -130,16 +130,16 @@ for (int i = 0 ;i<allModels.length;i++) {
 
          orderService.sendOrderToEmail(currentUser,goodsInOrders);
 
-        Basket basket = currentUser.getBasket();
+       /* Basket basket = currentUser.getBasket();
         List<GoodsInBasket> goodsInBasket=basket.getGoods();
 
          List<GoodsInOrder> allGoodsInOrders = orderService.getGoodsInOrders(currentUser);
 
+*/
 
 
 
-
-        return allGoodsInOrders;
+        return goodsInOrders;
     }
 
 
