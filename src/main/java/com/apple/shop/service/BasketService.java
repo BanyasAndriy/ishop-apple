@@ -18,88 +18,88 @@ import java.util.List;
 @Service
 public class BasketService {
 
-@Autowired
-   private BasketRepository basketRepository;
 
-@Autowired
-private GoodsInBasketRepository goodsInBasketRepository;
-@Autowired
-    GoodsInBasketService goodsInBasketService;
+    private BasketRepository basketRepository;
+
+    @Autowired
+    public void setBasketRepository(BasketRepository basketRepository) {
+        this.basketRepository = basketRepository;
+    }
+
+    @Autowired
+    private GoodsInBasketRepository goodsInBasketRepository;
+    @Autowired
+    private GoodsInBasketService goodsInBasketService;
 
 
-@Autowired
-UserService userService;
+    @Autowired
+    private UserService userService;
 
-
-@Transactional
-public Long addBasket(){
-
-    return basketRepository.save(new Basket()).getIdBasket();
-
-}
 
     @Transactional
-    public void updateBasket(GoodsInBasket goodsInBasket){
+    public Long addBasket() {
 
-        // basketRepository.save(goodsInBasket.getBasket());
-         goodsInBasketRepository.save(goodsInBasket);
+        return basketRepository.save(new Basket()).getIdBasket();
+
+    }
+
+    @Transactional
+    public void updateBasket(GoodsInBasket goodsInBasket) {
+
+        goodsInBasketRepository.save(goodsInBasket);
 
     }
 
 
-
-@Transactional
-  public void deleteGoodsFromBasket(String model,String name,String memory,CustomUser customUser){
-
+    @Transactional
+    public void deleteGoodsFromBasket(String model, String name, String memory, CustomUser customUser) {
 
 
-    Basket basket = customUser.getBasket();
-    List<GoodsInBasket> goodsInBasket=basket.getGoods();
+        Basket basket = customUser.getBasket();
+        List<GoodsInBasket> goodsInBasket = basket.getGoods();
 
-    for (GoodsInBasket basketGoods: goodsInBasket
-    ) {
-        if (basketGoods.getGoods().getModel().equals(model) && basketGoods.getGoods().getName().equals(name)  && basketGoods.getMemory().toString().equals(memory)){
-            goodsInBasketService.deleteGoodsFromBasket(basketGoods);
+        for (GoodsInBasket basketGoods : goodsInBasket
+        ) {
+            if (basketGoods.getGoods().getModel().equals(model) && basketGoods.getGoods().getName().equals(name) && basketGoods.getMemory().toString().equals(memory)) {
+                goodsInBasketService.deleteGoodsFromBasket(basketGoods);
+            }
+
         }
 
+
     }
-
-
-}
 
 
     @Transactional
-public String countOfGoodsInBasket(String emailCurrentUser){
+    public String countOfGoodsInBasket(String emailCurrentUser) {
 
 
-    if (emailCurrentUser==null){
-        return "";
+        if (emailCurrentUser == null) {
+            return "";
+        }
+
+        CustomUser customUser = userService.findByEmail(emailCurrentUser);
+
+        if (customUser == null) {
+            return "";
+        }
+
+        if (customUser.getBasket().getGoods() == null) {
+            return "0";
+        }
+
+        int count = getCountOFAllGoods(customUser.getBasket());
+
+
+        return String.valueOf(count);
+
+
     }
 
-    CustomUser customUser = userService.findByEmail(emailCurrentUser);
 
-    if(customUser==null){
-        return "";
-    }
-
-    if (customUser.getBasket().getGoods()==null){
-        return "0";
-    }
-
-    int count = getCountOFAllGoods(customUser.getBasket());
-
-
-
-return String.valueOf(count);
-
-
-}
-
-
-
-  @Transactional
+    @Transactional
     public Basket getBasketById(Long idBasket) {
-    return basketRepository.getOne(idBasket);
+        return basketRepository.getOne(idBasket);
     }
 
 
@@ -107,19 +107,11 @@ return String.valueOf(count);
     public int getCountOFAllGoods(Basket basket) {
 
 
-    return   basket.getGoods().size();
+        return basket.getGoods().size();
     }
 
 
-
-
-
-
-
-
-
-
-    private String  getEmailCurrentUser() {
+    private String getEmailCurrentUser() {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         String email = loggedInUser.getName();
 
