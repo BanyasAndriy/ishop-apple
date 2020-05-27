@@ -691,7 +691,6 @@ $(function() {
 
         if($('#two').css('display') == "none"){
 
-
             $(".go").addClass('kto');
             $(".go").removeClass('homess');
 
@@ -741,6 +740,7 @@ $(function() {
 
 
         } else{
+
             $(".go").addClass('homess');
             $(".go").removeClass('kto');
             $('.orde').css("display", "none");
